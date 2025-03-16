@@ -51,6 +51,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Header et logos */
 header {
+    margin-top: 60px; /* Hauteur de la nav */
     background: var(--neutral-light);
 }
 
@@ -95,7 +96,11 @@ header {
 nav {
     background: linear-gradient(135deg, var(--primary-blue), var(--primary-turquoise));
     padding: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 nav .nav-content {
@@ -121,6 +126,13 @@ nav ul li a {
     padding: var(--spacing-sm) var(--spacing-md);
     border-radius: 4px;
     transition: all 0.3s ease;
+}
+
+nav ul li a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 nav ul li a:hover {
@@ -202,6 +214,104 @@ footer {
     opacity: 1;
 }
 
+/* Section présentation */
+.presentation-section {
+    margin-top: var(--spacing-lg);
+    scroll-margin-top: var(--spacing-lg);
+}
+
+.text-block {
+    max-width: 1200px;
+    margin: 0 auto;
+    line-height: 1.5;
+    padding: 0 var(--spacing-md);
+}
+
+.text-block p {
+    margin-bottom: var(--spacing-md);
+    font-size: 1.1rem;
+}
+
+/* Section artiste */
+.artist-section {
+    margin-top: var(--spacing-lg);
+    text-align: center;
+    padding: var(--spacing-lg) 0;
+}
+
+.artist-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--neutral-dark);
+    margin-bottom: var(--spacing-md);
+}
+
+.artist-section .site-link {
+    display: inline-block;
+    margin-top: var(--spacing-sm);
+    font-size: 1.2rem;
+}
+
+.artist-section .site-link a {
+    color: var(--primary-turquoise);
+    text-decoration: none;
+    font-weight: 600;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.artist-section .site-link a:hover {
+    background-color: rgba(44, 122, 123, 0.1);
+    color: var(--primary-blue);
+}
+
+/* Section albums */
+.albums-section {
+    margin-top: var(--spacing-lg);
+}
+
+.album-grid {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.album-item {
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.album-item:hover {
+    transform: translateY(-5px);
+}
+
+.album-item img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.album-item h3 {
+    margin-top: var(--spacing-sm);
+    color: var(--primary-blue);
+    font-size: 1.2rem;
+}
+
+.album-item a {
+    text-decoration: none;
+}
+
+/* Scroll behavior */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--spacing-lg);
+}
+
 /* Media queries pour responsive */
 @media (max-width: 768px) {
     nav ul {
@@ -230,4 +340,262 @@ footer {
     .slideshow {
         height: 300px;
     }
+    
+    .album-grid {
+        gap: var(--spacing-md);
+    }
+    
+    .album-item img {
+        width: 200px;
+        height: 200px;
+    }
+
+    nav {
+        padding: var(--spacing-sm);
+    }
+    
+    header {
+        margin-top: 280px; /* Ajuster selon la hauteur du menu en mobile */
+    }
+}
+
+/* Style pour le bouton play */
+.audio-control {
+    position: relative;
+    z-index: 2;
+    background: var(--primary-turquoise);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.audio-control::before {
+    content: "▶";
+    font-size: 1.2rem;
+    margin-left: 3px;
+}
+
+.audio-control:hover {
+    transform: scale(1.1);
+    background: var(--primary-blue);
+}
+
+.audio-control:disabled {
+    opacity: 0.5;
+    cursor: default;
+    transform: none;
+}
+
+/* Burger Menu */
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 35px;
+    height: 30px;
+    background: var(--primary-blue);
+    border: 1px solid var(--neutral-light);
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 6px;
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    z-index: 1001;
+}
+
+.burger-line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--neutral-light);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .burger-menu {
+        display: flex;
+    }
+
+    nav ul.nav-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: var(--primary-blue);
+        padding: 60px 20px 20px;
+        flex-direction: column;
+        gap: 20px;
+        height: auto;
+        z-index: 1000;
+    }
+
+    nav ul.nav-menu.show {
+        display: flex;
+    }
+
+    .burger-menu.active .burger-line:nth-child(1) {
+        transform: translateY(10px) rotate(45deg);
+    }
+
+    .burger-menu.active .burger-line:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger-menu.active .burger-line:nth-child(3) {
+        transform: translateY(-10px) rotate(-45deg);
+    }
+}
+
+/* Page Activité */
+.activity-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+}
+
+.activity-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-lg);
+    color: var(--primary-blue);
+    text-align: center;
+}
+
+.activity-content h2 {
+    font-size: 1.8rem;
+    color: var(--primary-turquoise);
+    margin: var(--spacing-lg) 0 var(--spacing-md);
+}
+
+.activity-text p {
+    margin-bottom: var(--spacing-md);
+    line-height: 1.7;
+    font-size: 1.1rem;
+}
+
+.highlight-box {
+    background: rgba(44, 122, 123, 0.1);
+    border-left: 4px solid var(--primary-turquoise);
+    padding: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.highlight-box p {
+    margin: 0;
+    font-style: italic;
+    color: var(--primary-blue);
+}
+
+.example-box {
+    background: rgba(44, 122, 123, 0.05);
+    border-radius: 8px;
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.example-box h3 {
+    color: var(--primary-turquoise);
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.example-box p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--neutral-dark);
+}
+
+.quote-box {
+    background: rgba(26, 54, 93, 0.05);
+    border-left: 4px solid var(--primary-blue);
+    padding: var(--spacing-md) var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.quote-box p {
+    font-style: italic;
+    color: var(--primary-blue);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* Lien vers les instruments */
+.instruments-link {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.btn-link {
+    display: inline-block;
+    color: var(--primary-turquoise);
+    text-decoration: none;
+    font-weight: 600;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: 2px solid var(--primary-turquoise);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.btn-link:hover {
+    background: var(--primary-turquoise);
+    color: white;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .activity-content {
+        padding: var(--spacing-md);
+    }
+    
+    .activity-content h1 {
+        font-size: 2rem;
+    }
+}
+
+.activity-header-image {
+    margin: var(--spacing-lg) 0 -50px;  /* Margin négative en bas pour superposition */
+    text-align: center;
+    position: relative;
+    padding-bottom: 80px;  /* Espace pour le dégradé */
+}
+
+.activity-header-image::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, var(--neutral-light));
+    pointer-events: none;
+    z-index: 1;
+}
+
+.activity-header-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.activity-text {
+    position: relative;
+    z-index: 2;  /* Place le texte au-dessus de l'image */
 }

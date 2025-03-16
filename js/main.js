@@ -1,5 +1,41 @@
 // Script principal
 document.addEventListener('DOMContentLoaded', function() {
+    // Gestion du menu burger
+    const burgerMenu = document.querySelector('.burger-menu');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (burgerMenu && navMenu) {
+        burgerMenu.addEventListener('click', () => {
+            burgerMenu.classList.toggle('active');
+            navMenu.classList.toggle('show');
+        });
+
+        // Fermer le menu si on clique sur un lien
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                burgerMenu.classList.remove('active');
+                navMenu.classList.remove('show');
+            });
+        });
+    }
+
+    // Gestion de l'audio (générique pour toutes les pages)
+    const pageAudio = document.getElementById('pageAudio') || document.getElementById('homeAudio');
+    const playButton = document.getElementById('playButton');
+
+    if (pageAudio && playButton) {
+        playButton.addEventListener('click', () => {
+            if (pageAudio.paused) {
+                pageAudio.play();
+            }
+        });
+
+        pageAudio.addEventListener('ended', () => {
+            playButton.style.opacity = '0.5';
+            playButton.disabled = true;
+        });
+    }
+
     // Animation des éléments au scroll
     const animateOnScroll = () => {
         const elements = document.querySelectorAll('.animate-element');
@@ -18,6 +54,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Code à exécuter une fois le DOM chargé
     console.log('Site Vibration Résonance chargé');
+
+    // Gestion du défilement fluide
+    const sections = document.querySelectorAll('section');
+    let currentSectionIndex = 0;
+
+    window.addEventListener('wheel', (e) => {
+        if (e.deltaY > 0 && currentSectionIndex < sections.length - 1) {
+            currentSectionIndex++;
+            sections[currentSectionIndex].scrollIntoView({ behavior: 'smooth' });
+        } else if (e.deltaY < 0 && currentSectionIndex > 0) {
+            currentSectionIndex--;
+            sections[currentSectionIndex].scrollIntoView({ behavior: 'smooth' });
+        }
+    });
 
     // Diaporama
     const initSlideshow = () => {
