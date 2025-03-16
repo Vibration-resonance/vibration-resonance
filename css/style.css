@@ -1,0 +1,233 @@
+:root {
+    /* Palette de couleurs */
+    --primary-blue: #1a365d;
+    --primary-turquoise: #2c7a7b;
+    --secondary-purple: #553c9a;
+    --secondary-magenta: #b83280;
+    --neutral-dark: #2d3748;
+    --neutral-light: #f7fafc;
+    
+    /* Espacements */
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+}
+
+/* Importation des polices */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+/* Reset et base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: var(--neutral-dark);
+    background-color: var(--neutral-light);
+}
+
+/* Typographie */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--primary-blue);
+}
+
+/* Titre principal */
+.main-title {
+    position: relative;
+    z-index: 2;
+    font-family: "Marck Script", cursive;
+    font-size: 3.5rem;
+    color: var(--primary-blue);
+    margin: 0;
+    line-height: 1.2;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Header et logos */
+header {
+    background: var(--neutral-light);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    height: 160px;
+    margin: 0 auto;
+    padding: var(--spacing-md);
+    justify-content: space-between;
+    background: url('../images/grue.jpeg') center/cover no-repeat;
+    position: relative;
+}
+
+.logo-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 1;
+}
+
+.logo-left {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.logo-container img {
+    height: 40px;
+    width: auto;
+    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* Navigation */
+nav {
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-turquoise));
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+nav .nav-content {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: var(--spacing-lg);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-left: auto;
+}
+
+nav ul li a {
+    color: var(--neutral-light);
+    text-decoration: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Layout principal */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+}
+
+/* Animation de base pour les éléments interactifs */
+.animate-element {
+    transition: all 0.3s ease;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: var(--spacing-md);
+    background: var(--neutral-dark);
+    color: var(--neutral-light);
+}
+
+/* Section Introduction */
+.intro-section {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+}
+
+.intro-text {
+    flex: 1;
+    padding: var(--spacing-md);
+}
+
+.intro-text h2 {
+    font-family: "Marck Script", cursive;
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-md);
+}
+
+.intro-text p {
+    margin-bottom: var(--spacing-md);
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.intro-text .quote {
+    font-style: italic;
+    color: var(--primary-turquoise);
+    font-size: 1.2rem;
+    margin: var(--spacing-lg) 0;
+}
+
+.slideshow {
+    flex: 1;
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.slideshow img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.slideshow img.active {
+    opacity: 1;
+}
+
+/* Media queries pour responsive */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+    
+    nav .nav-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .logo-container {
+        margin-bottom: var(--spacing-md);
+    }
+
+    .intro-section {
+        flex-direction: column;
+    }
+    
+    .slideshow {
+        height: 300px;
+    }
+}
