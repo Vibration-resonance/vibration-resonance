@@ -74,14 +74,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const slideshow = document.getElementById('residentsSlideshow');
         if (!slideshow) return;
 
-        const images = [];
-        // Générer la liste des images de 10011 à 10102
-        for (let i = 11; i <= 102; i++) {
-            images.push(`images/residents/100${i.toString().padStart(2, '0')}.jpg`);
-        }
+        // Liste des photos disponibles (excluant celles manquantes)
+        const photos = [
+            '10011', '10012', '10013', '10014', '10015', '10016', '10017', '10018', 
+            '10019', '10020', '10021', '10022', '10023', '10024', '10025', '10026', 
+            '10027', '10028', '10029', '10030', '10031', '10032', '10033', '10034', 
+            '10035', '10036', '10037', '10038', '10039', '10040', '10041', '10042', 
+            '10043', '10044', '10045', '10046', '10047', '10048', '10049', '10050',
+            '10051', '10052', '10053'
+        ].map(id => `images/residents/${id}.jpg`);
 
         // Créer et précharger les images
-        images.forEach((src, index) => {
+        photos.forEach((src, index) => {
             const img = document.createElement('img');
             img.src = src;
             img.alt = `Image ${index + 1}`;
@@ -89,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
             slideshow.appendChild(img);
         });
 
-        if (images.length > 1) {
+        if (photos.length > 1) {
             let currentSlide = 0;
             setInterval(() => {
                 const slides = slideshow.getElementsByTagName('img');
